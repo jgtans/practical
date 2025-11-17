@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<!-- saved from url=(0115)https://storage.yandexcloud.net/x-solution-web-media/uploads/Works/2025-11-17/13548fe6a51d429d9d156b425164279f.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Мини-блог — кейс 3</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        main {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+        .column {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .left-column { width: 30%; }
+        .right-column { width: 70%; }
+
+        h2, h3 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="password"], textarea, select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 3px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 6px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            background: #1976d2;
+            color: #fff;
+        }
+        button.secondary {
+            background: #757575;
+        }
+        button.danger {
+            background: #d32f2f;
+        }
+        button.small {
+            padding: 4px 8px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        .auth-section {
+            margin-bottom: 20px;
+        }
+        .info {
+            font-size: 13px;
+            color: #555;
+        }
+        .user-badge {
+            font-weight: bold;
+        }
+
+        .user-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .tab-button {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #eee;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .tab-button.active {
+            background: #1976d2;
+            color: #fff;
+            border-color: #1976d2;
+        }
+
+        .post {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #fafafa;
+        }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .post-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .post-meta {
+            font-size: 12px;
+            color: #666;
+        }
+        .tag {
+            display: inline-block;
+            background: #e0e0e0;
+            border-radius: 3px;
+            padding: 2px 5px;
+            font-size: 11px;
+            margin-right: 4px;
+            margin-top: 4px;
+        }
+        .post-actions {
+            margin-top: 8px;
+        }
+        .post-actions button {
+            margin-right: 5px;
+        }
+
+        .comment-section {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #ccc;
+        }
+        .comment {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .comment span.author {
+            font-weight: bold;
+        }
+
+        .hidden-content {
+            font-style: italic;
+            color: #777;
+        }
+
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .small-input {
+            width: auto;
+        }
+        @media (max-width: 900px) {
+            main {
+                flex-direction: column;
+            }
+            .left-column, .right-column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Мини-блог (кейс-задача №3)</h1>
+    <div id="currentUserInfo"><span class="info">Вы не авторизованы</span></div>
+</header>
+
+<main>
+    <section class="column left-column">
+        <div class="auth-section">
+            <h2>Регистрация / вход</h2>
+            <label>Логин:
+                <input type="text" id="authUsername">
+            </label>
+            <label>Пароль:
+                <input type="password" id="authPassword">
+            </label>
+            <button id="registerBtn">Зарегистрироваться</button>
+            <button id="loginBtn" class="secondary">Войти</button>
+            <button id="logoutBtn" class="secondary">Выйти</button>
+            <p class="info">
+                Данные хранятся в <code>localStorage</code> (для учебных целей, без настоящей безопасности).
+            </p>
+        </div>
+
+        <div id="createPostSection" style="display:none;">
+            <h2>Создать пост</h2>
+            <label>Заголовок:
+                <input type="text" id="postTitle">
+            </label>
+            <label>Текст поста:
+                <textarea id="postContent"></textarea>
+            </label>
+            <label>Теги (через запятую):
+                <input type="text" id="postTags" placeholder="пример: учеба,информатика,проект">
+            </label>
+            <label>Доступ:
+                <select id="postVisibility">
+                    <option value="public">Публичный</option>
+                    <option value="request">Только по запросу</option>
+                </select>
+            </label>
+            <button id="savePostBtn">Сохранить пост</button>
+            <button id="cancelEditBtn" class="secondary" style="display:none;">Отмена редактирования</button>
+            <input type="hidden" id="editingPostId">
+        </div>
+
+        <div id="subscriptionsSection" style="display:none; margin-top:20px;">
+            <h2>Подписки</h2>
+            <div id="userList"><p class="info">Авторизуйтесь, чтобы управлять подписками.</p></div>
+            <p class="info">
+                Лента формируется из постов пользователей, на которых вы подписаны.
+            </p>
+        </div>
+    </section>
+
+    <section class="column right-column">
+        <h2>Посты</h2>
+        <div class="filter-bar">
+            <div>
+                <label for="tagFilter">Фильтр по тегу:</label>
+                <select id="tagFilter" class="small-input"><option value="all">Все теги</option></select>
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="feed">Лента подписок</button>
+            <button class="tab-button" data-tab="public">Публичные посты</button>
+            <button class="tab-button" data-tab="my">Мои посты</button>
+        </div>
+        <div id="postsContainer"><p class="info">Авторизуйтесь и подпишитесь на пользователей, чтобы увидеть ленту.</p></div>
+    </section>
+</main>
+
+<script>
+    const STORAGE_KEY = 'blogAppData';
+    const CURRENT_USER_KEY = 'blogAppCurrentUser';
+
+    function loadData() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+            return { users: [], posts: [], subscriptions: {} };
+        }
+        try {
+            return JSON.parse(raw);
+        } catch (e) {
+            return { users: [], posts: [], subscriptions: {} };
+        }
+    }
+
+    function saveData(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function getCurrentUserId() {
+        return localStorage.getItem(CURRENT_USER_KEY);
+    }
+
+    function setCurrentUserId(id) {
+        if (id === null) {
+            localStorage.removeItem(CURRENT_USER_KEY);
+        } else {
+            localStorage.setItem(CURRENT_USER_KEY, id);
+        }
+    }
+
+    function getCurrentUser(data) {
+        const id = getCurrentUserId();
+        if (!id) return null;
+        return data.users.find(u => u.id === id) || null;
+    }
+
+    function generateId(prefix) {
+        return prefix + '_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    }
+
+    function formatDate(timestamp) {
+        const d = new Date(timestamp);
+        return d.toLocaleString('ru-RU');
+    }
+
+    function updateCurrentUserInfo() {
+        const data = loadData();
+        const user = getCurrentUser(data);
+        const el = document.getElementById('currentUserInfo');
+        const createPostSection = document.getElementById('createPostSection');
+        const subscriptionsSection = document.getElementById('subscriptionsSection');
+
+        if (!user) {
+            el.innerHTML = '<span class="info">Вы не авторизованы</span>';
+            createPostSection.style.display = 'none';
+            subscriptionsSection.style.display = 'none';
+        } else {
+            el.innerHTML = 'Текущий пользователь: <span class="user-badge">' +
+                user.username + '</span>';
+            createPostSection.style.display = 'block';
+            subscriptionsSection.style.display = 'block';
+        }
+    }
+
+    function renderUserList() {
+        const data = loadData();
+        const user = getCurrentUser(data);
+        const container = document.getElementById('userList');
+        container.innerHTML = '';
+
+        if (!user) {
+            container.innerHTML = '<p class="info">Авторизуйтесь, чтобы управлять подписками.</p>';
+            return;
+        }
+
+        const subs = data.subscriptions[user.id] || [];
+
+        data.users
+            .filter(u => u.id !== user.id)
+            .forEach(u => {
+                const div = document.createElement('div');
+                div.className = 'user-list-item';
+                const isSubscribed = subs.includes(u.id);
+
+                div.innerHTML = `
+                    <span>${u.username}</span>
+                    <span>
+                        <button class="small" data-action="${isSubscribed ? 'unsubscribe' : 'subscribe'}" data-user-id="${u.id}">
+                            ${isSubscribed ? 'Отписаться' : 'Подписаться'}
+                        </button>
+                    </span>
+                `;
+                container.appendChild(div);
+            });
+
+        container.querySelectorAll('button[data-action]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-user-id');
+                const data = loadData();
+                const user = getCurrentUser(data);
+                if (!user) return;
+
+                const subs = data.subscriptions[user.id] || [];
+                if (btn.getAttribute('data-action') === 'subscribe') {
+                    if (!subs.includes(targetId)) subs.push(targetId);
+                } else {
+                    const idx = subs.indexOf(targetId);
+                    if (idx !== -1) subs.splice(idx, 1);
+                }
+                data.subscriptions[user.id] = subs;
+                saveData(data);
+                renderUserList();
+                renderPosts();
+            });
+        });
+    }
+
+    function collectAllTags(posts) {
+        const set = new Set();
+        posts.forEach(p => (p.tags || []).forEach(t => set.add(t)));
+        return Array.from(set).sort();
+    }
+
+    function renderTagFilter() {
+        const data = loadData();
+        const allTags = collectAllTags(data.posts);
+        const select = document.getElementById('tagFilter');
+        const currentValue = select.value || 'all';
+
+        select.innerHTML = '<option value="all">Все теги</option>';
+        allTags.forEach(tag => {
+            const option = document.createElement('option');
+            option.value = tag;
+            option.textContent = tag;
+            select.appendChild(option);
+        });
+
+        if (allTags.includes(currentValue)) {
+            select.value = currentValue;
+        } else {
+            select.value = 'all';
+        }
+    }
+
+    function getActiveTab() {
+        const activeBtn = document.querySelector('.tab-button.active');
+        return activeBtn ? activeBtn.getAttribute('data-tab') : 'feed';
+    }
+
+    function renderPosts() {
+        const data = loadData();
+        const user = getCurrentUser(data);
+        const container = document.getElementById('postsContainer');
+        const activeTab = getActiveTab();
+        const tagFilter = document.getElementById('tagFilter').value;
+
+        let postsToShow = [];
+
+        if (activeTab === 'feed') {
+            if (!user) {
+                container.innerHTML = '<p class="info">Авторизуйтесь и подпишитесь на пользователей, чтобы увидеть ленту.</p>';
+                return;
+            }
+            const subs = data.subscriptions[user.id] || [];
+            postsToShow = data.posts.filter(p => subs.includes(p.authorId));
+        } else if (activeTab === 'public') {
+            postsToShow = data.posts.filter(p => p.visibility === 'public');
+        } else if (activeTab === 'my') {
+            if (!user) {
+                container.innerHTML = '<p class="info">Авторизуйтесь, чтобы увидеть свои посты.</p>';
+                return;
+            }
+            postsToShow = data.posts.filter(p => p.authorId === user.id);
+        }
+
+        if (tagFilter !== 'all') {
+            postsToShow = postsToShow.filter(p => (p.tags || []).includes(tagFilter));
+        }
+
+        postsToShow.sort((a, b) => b.createdAt - a.createdAt);
+
+        if (postsToShow.length === 0) {
+            container.innerHTML = '<p class="info">Нет постов для отображения.</p>';
+            return;
+        }
+
+        container.innerHTML = '';
+        postsToShow.forEach(post => {
+            const div = document.createElement('div');
+            div.className = 'post';
+
+            const author = data.users.find(u => u.id === post.authorId);
+            const authorName = author ? author.username : 'Неизвестно';
+            const isAuthor = user && user.id === post.authorId;
+
+            let contentHtml = '';
+            if (post.visibility === 'public' || isAuthor) {
+                contentHtml = `<div class="post-content">${post.content}</div>`;
+            } else if (post.visibility === 'request') {
+                contentHtml = `
+                    <div class="hidden-content">
+                        Этот пост доступен только по запросу.
+                    </div>
+                    <button class="small" data-action="request-access" data-post-id="${post.id}">
+                        Запросить доступ
+                    </button>
+                    <div class="post-content" style="display:none;">${post.content}</div>
+                `;
+            }
+
+            let tagsHtml = '';
+            (post.tags || []).forEach(tag => {
+                tagsHtml += `<span class="tag">${tag}</span>`;
+            });
+
+            div.innerHTML = `
+                <div class="post-header">
+                    <span>${authorName}</span>
+                    <span class="post-meta">${formatDate(post.createdAt)} • ${
+                        post.visibility === 'public' ? 'Публичный' : 'По запросу'
+                    }</span>
+                </div>
+                <div class="post-title">${post.title}</div>
+                ${contentHtml}
+                <div>${tagsHtml}</div>
+                <div class="post-actions">
+                    ${isAuthor ? `
+                        <button class="small" data-action="edit" data-post-id="${post.id}">Редактировать</button>
+                        <button class="small danger" data-action="delete" data-post-id="${post.id}">Удалить</button>
+                    ` : ''}
+                </div>
+                <div class="comment-section">
+                    <div class="comment-list">
+                        ${(post.comments || []).map(c => {
+                            const cAuthor = data.users.find(u => u.id === c.authorId);
+                            const cName = cAuthor ? cAuthor.username : 'Гость';
+                            return `<div class="comment"><span class="author">${cName}:</span> ${c.text}</div>`;
+                        }).join('')}
+                    </div>
+                    ${
+                        user
+                            ? `
+                        <div class="comment-form">
+                            <input type="text" class="comment-input" placeholder="Ваш комментарий" data-post-id="${post.id}">
+                            <button class="small" data-action="add-comment" data-post-id="${post.id}">Комментировать</button>
+                        </div>
+                        `
+                            : `<div class="info">Авторизуйтесь, чтобы оставлять комментарии.</div>`
+                    }
+                </div>
+            `;
+
+            container.appendChild(div);
+        });
+
+        container.querySelectorAll('button[data-action]').forEach(btn => {
+            const action = btn.getAttribute('data-action');
+            const postId = btn.getAttribute('data-post-id');
+            if (action === 'edit') {
+                btn.addEventListener('click', () => startEditPost(postId));
+            } else if (action === 'delete') {
+                btn.addEventListener('click', () => deletePost(postId));
+            } else if (action === 'add-comment') {
+                btn.addEventListener('click', () => addComment(postId));
+            } else if (action === 'request-access') {
+                btn.addEventListener('click', () => requestAccess(postId, btn));
+            }
+        });
+    }
+
+    function requestAccess(postId, button) {
+
+        alert('Запрос на доступ к посту отправлен (симуляция). Контент будет показан.');
+        const postBlock = button.closest('.post');
+        const contentDiv = postBlock.querySelector('.post-content');
+        if (contentDiv) {
+            contentDiv.style.display = 'block';
+        }
+        button.remove();
+    }
+
+    function startEditPost(postId) {
+        const data = loadData();
+        const user = getCurrentUser(data);
+        if (!user) return;
+
+        const post = data.posts.find(p => p.id === postId);
+        if (!post || post.authorId !== user.id) return;
+
+        document.getElementById('postTitle').value = post.title;
+        document.getElementById('postContent').value = post.content;
+        document.getElementById('postTags').value = (post.tags || []).join(',');
+        document.getElementById('postVisibility').value = post.visibility;
+        document.getElementById('editingPostId').value = post.id;
+
+        document.getElementById('savePostBtn').textContent = 'Сохранить изменения';
+        document.getElementById('cancelEditBtn').style.display = 'inline-block';
+    }
+
+    function cancelEdit() {
+        document.getElementById('postTitle').value = '';
+        document.getElementById('postContent').value = '';
+        document.getElementById('postTags').value = '';
+        document.getElementById('postVisibility').value = 'public';
+        document.getElementById('editingPostId').value = '';
+
+        document.getElementById('savePostBtn').textContent = 'Сохранить пост';
+        document.getElementById('cancelEditBtn').style.display = 'none';
+    }
+
+    function deletePost(postId) {
+        const data = loadData();
+        const user = getCurrentUser(data);
+        if (!user) return;
+
+        const post = data.posts.find(p => p.id === postId);
+        if (!post || post.authorId !== user.id) return;
+
+        if (!confirm('Удалить этот пост?')) return;
+
+        data.posts = data.posts.filter(p => p.id !== postId);
+        saveData(data);
+        renderTagFilter();
+        renderPosts();
+    }
+
+    function addComment(postId) {
+        const data = loadData();
+        const user = getCurrentUser(data);
+        if (!user) return;
+
+        const post = data.posts.find(p => p.id === postId);
+        if (!post) return;
+
+        const input = document.querySelector(`.comment-input[data-post-id="${postId}"]`);
+        if (!input || !input.value.trim()) return;
+        const text = input.value.trim();
+
+        if (!post.comments) post.comments = [];
+        post.comments.push({
+            id: generateId('comment'),
+            authorId: user.id,
+            text,
+            createdAt: Date.now()
+        });
+
+        saveData(data);
+        input.value = '';
+        renderPosts();
+    }
+
+
+    function initAuthHandlers() {
+        document.getElementById('registerBtn').addEventListener('click', () => {
+            const username = document.getElementById('authUsername').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            if (!username || !password) {
+                alert('Введите логин и пароль');
+                return;
+            }
+            const data = loadData();
+            if (data.users.some(u => u.username === username)) {
+                alert('Пользователь с таким логином уже существует');
+                return;
+            }
+            const newUser = {
+                id: generateId('user'),
+                username,
+                password
+            };
+            data.users.push(newUser);
+            saveData(data);
+            setCurrentUserId(newUser.id);
+            document.getElementById('authPassword').value = '';
+            updateCurrentUserInfo();
+            renderUserList();
+            renderPosts();
+        });
+
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const username = document.getElementById('authUsername').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            const data = loadData();
+            const user = data.users.find(u => u.username === username && u.password === password);
+            if (!user) {
+                alert('Неверный логин или пароль');
+                return;
+            }
+            setCurrentUserId(user.id);
+            document.getElementById('authPassword').value = '';
+            updateCurrentUserInfo();
+            renderUserList();
+            renderPosts();
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            setCurrentUserId(null);
+            updateCurrentUserInfo();
+            renderUserList();
+            renderPosts();
+        });
+    }
+
+    function initPostHandlers() {
+        document.getElementById('savePostBtn').addEventListener('click', () => {
+            const data = loadData();
+            const user = getCurrentUser(data);
+            if (!user) {
+                alert('Сначала войдите в систему');
+                return;
+            }
+
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+            const tagsRaw = document.getElementById('postTags').value.trim();
+            const visibility = document.getElementById('postVisibility').value;
+            const editingId = document.getElementById('editingPostId').value;
+
+            if (!title || !content) {
+                alert('Заполните заголовок и текст поста');
+                return;
+            }
+
+            const tags = tagsRaw
+                ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0)
+                : [];
+
+            if (editingId) {
+                const post = data.posts.find(p => p.id === editingId);
+                if (!post || post.authorId !== user.id) {
+                    alert('Нельзя редактировать этот пост');
+                    return;
+                }
+                post.title = title;
+                post.content = content;
+                post.tags = tags;
+                post.visibility = visibility;
+            } else {
+                data.posts.push({
+                    id: generateId('post'),
+                    authorId: user.id,
+                    title,
+                    content,
+                    tags,
+                    visibility,
+                    createdAt: Date.now(),
+                    comments: []
+                });
+            }
+
+            saveData(data);
+            cancelEdit();
+            renderTagFilter();
+            renderPosts();
+        });
+
+        document.getElementById('cancelEditBtn').addEventListener('click', () => {
+            cancelEdit();
+        });
+    }
+
+    function initTabs() {
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderPosts();
+            });
+        });
+    }
+
+    function initTagFilter() {
+        document.getElementById('tagFilter').addEventListener('change', () => {
+            renderPosts();
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initAuthHandlers();
+        initPostHandlers();
+        initTabs();
+        initTagFilter();
+
+        updateCurrentUserInfo();
+        renderUserList();
+        renderTagFilter();
+        renderPosts();
+    });
+</script>
+
+
+</body></html>
