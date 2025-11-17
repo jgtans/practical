@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<!-- saved from url=(0115)https://storage.yandexcloud.net/x-solution-web-media/uploads/Works/2025-11-17/18dfe17ba8724e37bb1e91928767d38c.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Мой книжный магазин</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body {
+  background: linear-gradient(135deg, #f3f4ff, #eef4ff);
+  min-height: 100vh;
+}
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+.header {
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #60a5fa, #a5b4fc);
+  color: #f9fafb;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+}
+.header-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+.header-sub {
+  font-size: 13px;
+  opacity: 0.9;
+}
+.toggle-group {
+  display: inline-flex;
+  background: rgba(15, 23, 42, 0.18);
+  border-radius: 999px;
+  padding: 3px;
+}
+.toggle-btn {
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  padding: 7px 20px;
+  font-size: 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.toggle-btn.active {
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+}
+.main {
+  padding: 24px 40px 32px;
+  display: grid;
+  gap: 18px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 18px;
+}
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  border: 1px solid #e5e7f0;
+  box-shadow: 0 10px 25px rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(8px);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+.card-sub {
+  font-size: 11px;
+  color: #6b7280;
+}
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+}
+.badge.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+.badge.gray {
+  background: #e5e7eb;
+  color: #374151;
+}
+.badge.red {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.badge.blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.select,
+.input,
+.button {
+  border-radius: 999px;
+  border: 1px solid #d4d7f0;
+  padding: 8px 14px;
+  font-size: 13px;
+  outline: none;
+}
+.select,
+.input {
+  background: #f9fafb;
+}
+.select:focus,
+.input:focus {
+  border-color: #6366f1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+.button {
+  background: #6366f1;
+  color: #f9fafb;
+  cursor: pointer;
+  font-weight: 500;
+  padding-inline: 20px;
+  transition: all 0.18s;
+}
+.button.secondary {
+  background: #ffffff;
+  color: #111827;
+}
+.button.danger {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+.button:disabled {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+.button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 9px 22px rgba(79, 70, 229, 0.35);
+}
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 460px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+.book-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.4fr) minmax(0, 1.5fr);
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e5e7f0;
+}
+.book-main-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+.book-main-meta {
+  font-size: 11px;
+  color: #6b7280;
+}
+.book-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.book-quick {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #4b5563;
+}
+.book-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.book-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.small-select {
+  border-radius: 999px;
+  border: 1px solid #d4d7f0;
+  padding: 5px 8px;
+  font-size: 11px;
+  background: #f9fafb;
+}
+.small-select:focus {
+  border-color: #6366f1;
+  background: #ffffff;
+}
+.price {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+.muted {
+  font-size: 11px;
+  color: #9ca3af;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.form-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.label {
+  font-size: 11px;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+.input-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rent-list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.rent-row {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 9px 11px;
+  border: 1px solid #e5e7f0;
+  font-size: 11px;
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+  gap: 8px;
+}
+.rent-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.rent-meta {
+  color: #6b7280;
+}
+.rent-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+.note {
+  background: #fef9c3;
+  border-radius: 10px;
+  padding: 6px 8px;
+  font-size: 11px;
+  border: 1px solid #fef08a;
+  color: #92400e;
+}
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: minmax(0,1.6fr) minmax(0,1.1fr);
+  }
+}
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .card {
+    border-radius: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    padding-inline: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .main {
+    padding: 20px;
+  }
+  .book-row {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .book-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .book-actions-row {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .main {
+    padding: 16px;
+  }
+}
+.hidden {
+  display: none;
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div>
+      <div class="header-title">Мой книжный магазин</div>
+      <div class="header-sub">Просмотр, покупка, аренда и управление книгами</div>
+    </div>
+    <div class="toggle-group">
+      <button id="userTab" class="toggle-btn active" type="button">Пользователь</button>
+      <button id="adminTab" class="toggle-btn" type="button">Администратор</button>
+    </div>
+  </header>
+  <main class="main">
+    <section id="userPanel">
+      <div class="layout">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Библиотека</div>
+              <div class="card-sub">Сортировка и просмотр доступных книг</div>
+            </div>
+            <span class="badge blue" id="bookCount">Книг: 5</span>
+          </div>
+          <div class="filters">
+            <select id="filterCategory" class="select"><option value="">Все категории</option><option value="Детектив">Детектив</option><option value="Классика">Классика</option><option value="Роман">Роман</option><option value="Фантастика">Фантастика</option><option value="Фэнтези">Фэнтези</option></select>
+            <select id="filterAuthor" class="select"><option value="">Все авторы</option><option value="Джоан Роулинг">Джоан Роулинг</option><option value="Карлос Руис Сафон">Карлос Руис Сафон</option><option value="Михаил Булгаков">Михаил Булгаков</option><option value="Рэй Брэдбери">Рэй Брэдбери</option><option value="Эрих Мария Ремарк">Эрих Мария Ремарк</option></select>
+            <select id="filterYear" class="select"><option value="">Все годы</option><option value="1936">1936</option><option value="1953">1953</option><option value="1967">1967</option><option value="1997">1997</option><option value="2001">2001</option></select>
+            <button id="clearFilters" class="button secondary" type="button">Сбросить</button>
+          </div>
+          <div class="book-list" id="userBookList"><div class="book-row"><div><div class="book-main-title">Три товарища</div><div class="book-main-meta">Эрих Мария Ремарк • 1936</div><div class="book-tags"><span class="badge gray">Роман</span></div></div><div class="book-quick"><div><span class="price">450 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><button type="button" class="button">Купить</button></div><div class="book-actions-row"><select class="small-select"><option value="">Срок аренды</option><option value="14">2 недели</option><option value="30">1 месяц</option><option value="90">3 месяца</option></select><button type="button" class="button secondary">Арендовать</button></div></div></div><div class="book-row"><div><div class="book-main-title">Мастер и Маргарита</div><div class="book-main-meta">Михаил Булгаков • 1967</div><div class="book-tags"><span class="badge gray">Классика</span></div></div><div class="book-quick"><div><span class="price">500 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><button type="button" class="button">Купить</button></div><div class="book-actions-row"><select class="small-select"><option value="">Срок аренды</option><option value="14">2 недели</option><option value="30">1 месяц</option><option value="90">3 месяца</option></select><button type="button" class="button secondary">Арендовать</button></div></div></div><div class="book-row"><div><div class="book-main-title">451 градус по Фаренгейту</div><div class="book-main-meta">Рэй Брэдбери • 1953</div><div class="book-tags"><span class="badge gray">Фантастика</span></div></div><div class="book-quick"><div><span class="price">420 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><button type="button" class="button">Купить</button></div><div class="book-actions-row"><select class="small-select"><option value="">Срок аренды</option><option value="14">2 недели</option><option value="30">1 месяц</option><option value="90">3 месяца</option></select><button type="button" class="button secondary">Арендовать</button></div></div></div><div class="book-row"><div><div class="book-main-title">Гарри Поттер и философский камень</div><div class="book-main-meta">Джоан Роулинг • 1997</div><div class="book-tags"><span class="badge gray">Фэнтези</span></div></div><div class="book-quick"><div><span class="price">390 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><button type="button" class="button">Купить</button></div><div class="book-actions-row"><select class="small-select"><option value="">Срок аренды</option><option value="14">2 недели</option><option value="30">1 месяц</option><option value="90">3 месяца</option></select><button type="button" class="button secondary">Арендовать</button></div></div></div><div class="book-row"><div><div class="book-main-title">Тень ветра</div><div class="book-main-meta">Карлос Руис Сафон • 2001</div><div class="book-tags"><span class="badge gray">Детектив</span></div></div><div class="book-quick"><div><span class="price">480 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><button type="button" class="button">Купить</button></div><div class="book-actions-row"><select class="small-select"><option value="">Срок аренды</option><option value="14">2 недели</option><option value="30">1 месяц</option><option value="90">3 месяца</option></select><button type="button" class="button secondary">Арендовать</button></div></div></div></div>
+          <div class="muted" style="margin-top:8px;">Нажмите «Купить» или выберите срок аренды для оформления.</div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Мои покупки и аренды</div>
+            <span class="badge gray" id="orderCount">0 записей</span>
+          </div>
+          <div class="rent-list" id="userRentList"><div class="muted">У вас пока нет покупок и аренды.</div></div>
+        </div>
+      </div>
+    </section>
+    <section id="adminPanel" class="hidden">
+      <div class="layout">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Управление книгами</div>
+              <div class="card-sub">Добавление, редактирование, статусы и цены</div>
+            </div>
+            <span class="badge green" id="adminBookCount">Книг: 5</span>
+          </div>
+          <form id="bookForm">
+            <div class="form-grid">
+              <div class="input-block">
+                <span class="label">Название</span>
+                <input id="titleInput" class="input" required="">
+              </div>
+              <div class="input-block">
+                <span class="label">Автор</span>
+                <input id="authorInput" class="input" required="">
+              </div>
+              <div class="input-block">
+                <span class="label">Категория</span>
+                <input id="categoryInput" class="input" required="">
+              </div>
+              <div class="input-block">
+                <span class="label">Год</span>
+                <input id="yearInput" class="input" type="number" min="1500" max="2100" required="">
+              </div>
+              <div class="input-block">
+                <span class="label">Цена, ₽</span>
+                <input id="priceInput" class="input" type="number" min="0" step="10" required="">
+              </div>
+              <div class="input-block">
+                <span class="label">Статус</span>
+                <select id="statusInput" class="select">
+                  <option value="available">Доступна</option>
+                  <option value="unavailable">Недоступна</option>
+                  <option value="archived">Архив</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <button id="saveBook" class="button" type="submit">Сохранить книгу</button>
+              <button id="resetBookForm" class="button secondary" type="button">Очистить форму</button>
+            </div>
+            <input type="hidden" id="editBookId">
+          </form>
+          <div class="book-list" id="adminBookList" style="margin-top:10px;"><div class="book-row"><div><div class="book-main-title">451 градус по Фаренгейту</div><div class="book-main-meta">Рэй Брэдбери • 1953</div><div class="book-tags"><span class="badge gray">Фантастика</span></div></div><div class="book-quick"><div><span class="price">420 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><select class="small-select"><option value="available">Доступна</option><option value="unavailable">Недоступна</option><option value="archived">Архив</option></select></div><div class="book-actions-row"><input class="small-select" type="number" min="0" step="10"></div><div class="book-actions-row"><button type="button" class="button secondary">Редактировать</button><button type="button" class="button danger">Удалить</button></div></div></div><div class="book-row"><div><div class="book-main-title">Гарри Поттер и философский камень</div><div class="book-main-meta">Джоан Роулинг • 1997</div><div class="book-tags"><span class="badge gray">Фэнтези</span></div></div><div class="book-quick"><div><span class="price">390 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><select class="small-select"><option value="available">Доступна</option><option value="unavailable">Недоступна</option><option value="archived">Архив</option></select></div><div class="book-actions-row"><input class="small-select" type="number" min="0" step="10"></div><div class="book-actions-row"><button type="button" class="button secondary">Редактировать</button><button type="button" class="button danger">Удалить</button></div></div></div><div class="book-row"><div><div class="book-main-title">Мастер и Маргарита</div><div class="book-main-meta">Михаил Булгаков • 1967</div><div class="book-tags"><span class="badge gray">Классика</span></div></div><div class="book-quick"><div><span class="price">500 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><select class="small-select"><option value="available">Доступна</option><option value="unavailable">Недоступна</option><option value="archived">Архив</option></select></div><div class="book-actions-row"><input class="small-select" type="number" min="0" step="10"></div><div class="book-actions-row"><button type="button" class="button secondary">Редактировать</button><button type="button" class="button danger">Удалить</button></div></div></div><div class="book-row"><div><div class="book-main-title">Тень ветра</div><div class="book-main-meta">Карлос Руис Сафон • 2001</div><div class="book-tags"><span class="badge gray">Детектив</span></div></div><div class="book-quick"><div><span class="price">480 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><select class="small-select"><option value="available">Доступна</option><option value="unavailable">Недоступна</option><option value="archived">Архив</option></select></div><div class="book-actions-row"><input class="small-select" type="number" min="0" step="10"></div><div class="book-actions-row"><button type="button" class="button secondary">Редактировать</button><button type="button" class="button danger">Удалить</button></div></div></div><div class="book-row"><div><div class="book-main-title">Три товарища</div><div class="book-main-meta">Эрих Мария Ремарк • 1936</div><div class="book-tags"><span class="badge gray">Роман</span></div></div><div class="book-quick"><div><span class="price">450 ₽</span></div><div><span class="badge green">Доступна</span></div></div><div class="book-actions"><div class="book-actions-row"><select class="small-select"><option value="available">Доступна</option><option value="unavailable">Недоступна</option><option value="archived">Архив</option></select></div><div class="book-actions-row"><input class="small-select" type="number" min="0" step="10"></div><div class="book-actions-row"><button type="button" class="button secondary">Редактировать</button><button type="button" class="button danger">Удалить</button></div></div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Аренды и напоминания</div>
+              <div class="card-sub">Контроль сроков и доступности</div>
+            </div>
+            <span class="badge red" id="alertCount">0 напоминаний</span>
+          </div>
+          <div class="rent-list" id="adminRentList"><div class="muted">Пока нет оформленных покупок и аренды.</div></div>
+          <div style="margin-top:10px;">
+            <div class="section-title" style="font-size:14px;margin-bottom:6px;">Автоматические напоминания</div>
+            <div class="notifications" id="notifications"><div class="muted">Активных напоминаний нет.</div></div>
+            <div class="muted" style="margin-top:6px;">Напоминания формируются автоматически при приближении или истечении срока аренды.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+var booksKey = "bookstore_books_v1";
+var rentKey = "bookstore_rentals_v1";
+var books = [];
+var rents = [];
+var userTab = document.getElementById("userTab");
+var adminTab = document.getElementById("adminTab");
+var userPanel = document.getElementById("userPanel");
+var adminPanel = document.getElementById("adminPanel");
+function loadState() {
+  var b = localStorage.getItem(booksKey);
+  var r = localStorage.getItem(rentKey);
+  if (b) {
+    try {
+      books = JSON.parse(b);
+    } catch (e) {}
+  }
+  if (r) {
+    try {
+      rents = JSON.parse(r);
+    } catch (e) {}
+  }
+  if (!books || books.length === 0) {
+    books = [
+      {id: 1, title: "Три товарища", author: "Эрих Мария Ремарк", category: "Роман", year: 1936, price: 450, status: "available"},
+      {id: 2, title: "Мастер и Маргарита", author: "Михаил Булгаков", category: "Классика", year: 1967, price: 500, status: "available"},
+      {id: 3, title: "451 градус по Фаренгейту", author: "Рэй Брэдбери", category: "Фантастика", year: 1953, price: 420, status: "available"},
+      {id: 4, title: "Гарри Поттер и философский камень", author: "Джоан Роулинг", category: "Фэнтези", year: 1997, price: 390, status: "available"},
+      {id: 5, title: "Тень ветра", author: "Карлос Руис Сафон", category: "Детектив", year: 2001, price: 480, status: "available"}
+    ];
+    saveBooks();
+  }
+}
+function saveBooks() {
+  localStorage.setItem(booksKey, JSON.stringify(books));
+}
+function saveRents() {
+  localStorage.setItem(rentKey, JSON.stringify(rents));
+}
+function formatDate(date) {
+  var d = new Date(date);
+  var day = String(d.getDate()).padStart(2, "0");
+  var month = String(d.getMonth() + 1).padStart(2, "0");
+  var year = d.getFullYear();
+  return day + "." + month + "." + year;
+}
+function daysBetween(a, b) {
+  var diff = b.getTime() - a.getTime();
+  return Math.round(diff / (1000 * 60 * 60 * 24));
+}
+function getBookById(id) {
+  return books.find(function (b) {
+    return b.id === id;
+  });
+}
+function renderFilters() {
+  var cat = document.getElementById("filterCategory");
+  var auth = document.getElementById("filterAuthor");
+  var year = document.getElementById("filterYear");
+  var categories = new Set();
+  var authors = new Set();
+  var years = new Set();
+  books.forEach(function (b) {
+    categories.add(b.category);
+    authors.add(b.author);
+    years.add(b.year);
+  });
+  function fillSelect(select, placeholder, values) {
+    var current = select.value;
+    select.innerHTML = "";
+    var opt = document.createElement("option");
+    opt.value = "";
+    opt.textContent = placeholder;
+    select.appendChild(opt);
+    Array.from(values).sort().forEach(function (v) {
+      var o = document.createElement("option");
+      o.value = String(v);
+      o.textContent = v;
+      select.appendChild(o);
+    });
+    if (current && Array.from(values).includes(isNaN(Number(current)) ? current : Number(current))) {
+      select.value = current;
+    }
+  }
+  fillSelect(cat, "Все категории", categories);
+  fillSelect(auth, "Все авторы", authors);
+  fillSelect(year, "Все годы", years);
+}
+function renderBooksUser() {
+  var list = document.getElementById("userBookList");
+  list.innerHTML = "";
+  var fc = document.getElementById("filterCategory").value;
+  var fa = document.getElementById("filterAuthor").value;
+  var fy = document.getElementById("filterYear").value;
+  var filtered = books.filter(function (b) {
+    if (fc && b.category !== fc) return false;
+    if (fa && b.author !== fa) return false;
+    if (fy && String(b.year) !== fy) return false;
+    return true;
+  });
+  document.getElementById("bookCount").textContent = "Книг: " + filtered.length;
+  if (filtered.length === 0) {
+    var empty = document.createElement("div");
+    empty.className = "muted";
+    empty.textContent = "Нет книг по выбранным фильтрам.";
+    list.appendChild(empty);
+    return;
+  }
+  filtered.forEach(function (b) {
+    var row = document.createElement("div");
+    row.className = "book-row";
+    var main = document.createElement("div");
+    var title = document.createElement("div");
+    title.className = "book-main-title";
+    title.textContent = b.title;
+    var meta = document.createElement("div");
+    meta.className = "book-main-meta";
+    meta.textContent = b.author + " • " + b.year;
+    var tags = document.createElement("div");
+    tags.className = "book-tags";
+    var catBadge = document.createElement("span");
+    catBadge.className = "badge gray";
+    catBadge.textContent = b.category;
+    tags.appendChild(catBadge);
+    main.appendChild(title);
+    main.appendChild(meta);
+    main.appendChild(tags);
+    var quick = document.createElement("div");
+    quick.className = "book-quick";
+    var price = document.createElement("div");
+    price.innerHTML = '<span class="price">' + b.price + " ₽</span>";
+    var status = document.createElement("div");
+    var statusBadge = document.createElement("span");
+    if (b.status === "available") {
+      statusBadge.className = "badge green";
+      statusBadge.textContent = "Доступна";
+    } else if (b.status === "unavailable") {
+      statusBadge.className = "badge red";
+      statusBadge.textContent = "Недоступна";
+    } else {
+      statusBadge.className = "badge gray";
+      statusBadge.textContent = "Архив";
+    }
+    status.appendChild(statusBadge);
+    quick.appendChild(price);
+    quick.appendChild(status);
+    var actions = document.createElement("div");
+    actions.className = "book-actions";
+    var buyRow = document.createElement("div");
+    buyRow.className = "book-actions-row";
+    var buyBtn = document.createElement("button");
+    buyBtn.type = "button";
+    buyBtn.className = "button";
+    buyBtn.textContent = "Купить";
+    buyBtn.disabled = b.status !== "available";
+    buyBtn.onclick = function () {
+      createOrder(b.id, "buy", 0);
+    };
+    buyRow.appendChild(buyBtn);
+    var rentRow = document.createElement("div");
+    rentRow.className = "book-actions-row";
+    var select = document.createElement("select");
+    select.className = "small-select";
+    select.innerHTML = '<option value="">Срок аренды</option><option value="14">2 недели</option><option value="30">1 месяц</option><option value="90">3 месяца</option>';
+    var rentBtn = document.createElement("button");
+    rentBtn.type = "button";
+    rentBtn.className = "button secondary";
+    rentBtn.textContent = "Арендовать";
+    rentBtn.disabled = b.status !== "available";
+    rentBtn.onclick = function () {
+      var days = parseInt(select.value, 10);
+      if (!days) return;
+      createOrder(b.id, "rent", days);
+      select.value = "";
+    };
+    rentRow.appendChild(select);
+    rentRow.appendChild(rentBtn);
+    actions.appendChild(buyRow);
+    actions.appendChild(rentRow);
+    row.appendChild(main);
+    row.appendChild(quick);
+    row.appendChild(actions);
+    list.appendChild(row);
+  });
+}
+function renderBooksAdmin() {
+  var list = document.getElementById("adminBookList");
+  list.innerHTML = "";
+  document.getElementById("adminBookCount").textContent = "Книг: " + books.length;
+  books.slice().sort(function (a, b) {
+    return a.title.localeCompare(b.title, "ru");
+  }).forEach(function (b) {
+    var row = document.createElement("div");
+    row.className = "book-row";
+    var main = document.createElement("div");
+    var title = document.createElement("div");
+    title.className = "book-main-title";
+    title.textContent = b.title;
+    var meta = document.createElement("div");
+    meta.className = "book-main-meta";
+    meta.textContent = b.author + " • " + b.year;
+    var tags = document.createElement("div");
+    tags.className = "book-tags";
+    var catBadge = document.createElement("span");
+    catBadge.className = "badge gray";
+    catBadge.textContent = b.category;
+    tags.appendChild(catBadge);
+    main.appendChild(title);
+    main.appendChild(meta);
+    main.appendChild(tags);
+    var quick = document.createElement("div");
+    quick.className = "book-quick";
+    var price = document.createElement("div");
+    price.innerHTML = '<span class="price">' + b.price + " ₽</span>";
+    var status = document.createElement("div");
+    var statusBadge = document.createElement("span");
+    if (b.status === "available") {
+      statusBadge.className = "badge green";
+      statusBadge.textContent = "Доступна";
+    } else if (b.status === "unavailable") {
+      statusBadge.className = "badge red";
+      statusBadge.textContent = "Недоступна";
+    } else {
+      statusBadge.className = "badge gray";
+      statusBadge.textContent = "Архив";
+    }
+    status.appendChild(statusBadge);
+    quick.appendChild(price);
+    quick.appendChild(status);
+    var actions = document.createElement("div");
+    actions.className = "book-actions";
+    var statusRow = document.createElement("div");
+    statusRow.className = "book-actions-row";
+    var statusSelect = document.createElement("select");
+    statusSelect.className = "small-select";
+    statusSelect.innerHTML = '<option value="available">Доступна</option><option value="unavailable">Недоступна</option><option value="archived">Архив</option>';
+    statusSelect.value = b.status;
+    statusSelect.onchange = function () {
+      b.status = statusSelect.value;
+      saveBooks();
+      updateAll();
+    };
+    statusRow.appendChild(statusSelect);
+    var priceRow = document.createElement("div");
+    priceRow.className = "book-actions-row";
+    var priceInput = document.createElement("input");
+    priceInput.className = "small-select";
+    priceInput.type = "number";
+    priceInput.min = "0";
+    priceInput.step = "10";
+    priceInput.value = b.price;
+    priceInput.onchange = function () {
+      var val = parseInt(priceInput.value, 10);
+      if (!isNaN(val)) {
+        b.price = val;
+        saveBooks();
+        updateAll();
+      }
+    };
+    priceRow.appendChild(priceInput);
+    var btnRow = document.createElement("div");
+    btnRow.className = "book-actions-row";
+    var editBtn = document.createElement("button");
+    editBtn.type = "button";
+    editBtn.className = "button secondary";
+    editBtn.textContent = "Редактировать";
+    editBtn.onclick = function () {
+      fillFormForEdit(b);
+    };
+    var delBtn = document.createElement("button");
+    delBtn.type = "button";
+    delBtn.className = "button danger";
+    delBtn.textContent = "Удалить";
+    delBtn.onclick = function () {
+      if (!confirm("Удалить книгу \"" + b.title + "\"?")) return;
+      books = books.filter(function (bk) {
+        return bk.id !== b.id;
+      });
+      rents = rents.map(function (r) {
+        if (r.bookId === b.id) r.bookId = null;
+        return r;
+      });
+      saveBooks();
+      saveRents();
+      updateAll();
+    };
+    btnRow.appendChild(editBtn);
+    btnRow.appendChild(delBtn);
+    actions.appendChild(statusRow);
+    actions.appendChild(priceRow);
+    actions.appendChild(btnRow);
+    row.appendChild(main);
+    row.appendChild(quick);
+    row.appendChild(actions);
+    list.appendChild(row);
+  });
+}
+function createOrder(bookId, type, days) {
+  var book = getBookById(bookId);
+  if (!book || book.status !== "available") return;
+  var userName = "Пользователь";
+  var now = new Date();
+  var end = null;
+  if (type === "rent") {
+    end = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+    book.status = "unavailable";
+  } else {
+    book.status = "unavailable";
+  }
+  var rent = {
+    id: Date.now(),
+    bookId: bookId,
+    userName: userName,
+    type: type,
+    createdAt: now.toISOString(),
+    endAt: end ? end.toISOString() : null,
+    status: type === "rent" ? "active" : "completed"
+  };
+  rents.push(rent);
+  saveBooks();
+  saveRents();
+  updateAll();
+}
+function renderRentsUser() {
+  var list = document.getElementById("userRentList");
+  list.innerHTML = "";
+  var mine = rents.slice().sort(function (a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+  document.getElementById("orderCount").textContent = mine.length + " записей";
+  if (mine.length === 0) {
+    var empty = document.createElement("div");
+    empty.className = "muted";
+    empty.textContent = "У вас пока нет покупок и аренды.";
+    list.appendChild(empty);
+    return;
+  }
+  mine.forEach(function (r) {
+    var book = getBookById(r.bookId);
+    var row = document.createElement("div");
+    row.className = "rent-row";
+    var main = document.createElement("div");
+    main.className = "rent-main";
+    var title = document.createElement("div");
+    title.textContent = book ? book.title : "Книга удалена";
+    var meta = document.createElement("div");
+    meta.className = "rent-meta";
+    var typeText = r.type === "rent" ? "Аренда" : "Покупка";
+    meta.textContent = typeText + " • " + formatDate(r.createdAt);
+    var extra = document.createElement("div");
+    extra.className = "rent-meta";
+    if (r.type === "rent" && r.endAt) {
+      var now = new Date();
+      var end = new Date(r.endAt);
+      var diffDays = daysBetween(now, end);
+      var label;
+      if (diffDays < 0) {
+        label = "Аренда завершена";
+      } else {
+        label = "До окончания аренды: " + diffDays + " дн.";
+      }
+      extra.textContent = "Срок до " + formatDate(r.endAt) + " • " + label;
+    } else {
+      extra.textContent = "Книга приобретена навсегда";
+    }
+    main.appendChild(title);
+    main.appendChild(meta);
+    main.appendChild(extra);
+    var status = document.createElement("div");
+    status.className = "rent-status";
+    var badge = document.createElement("span");
+    if (r.type === "rent") {
+      var now2 = new Date();
+      var end2 = r.endAt ? new Date(r.endAt) : null;
+      if (end2 && now2 > end2) {
+        badge.className = "badge red";
+        badge.textContent = "Срок истёк";
+      } else {
+        badge.className = "badge blue";
+        badge.textContent = "В аренде";
+      }
+    } else {
+      badge.className = "badge green";
+      badge.textContent = "Куплено";
+    }
+    status.appendChild(badge);
+    row.appendChild(main);
+    row.appendChild(status);
+    list.appendChild(row);
+  });
+}
+function renderRentsAdmin() {
+  var list = document.getElementById("adminRentList");
+  list.innerHTML = "";
+  if (rents.length === 0) {
+    var empty = document.createElement("div");
+    empty.className = "muted";
+    empty.textContent = "Пока нет оформленных покупок и аренды.";
+    list.appendChild(empty);
+    return;
+  }
+  rents.slice().sort(function (a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  }).forEach(function (r) {
+    var book = getBookById(r.bookId);
+    var row = document.createElement("div");
+    row.className = "rent-row";
+    var main = document.createElement("div");
+    main.className = "rent-main";
+    var title = document.createElement("div");
+    title.textContent = book ? book.title : "Книга удалена";
+    var meta = document.createElement("div");
+    meta.className = "rent-meta";
+    var typeText = r.type === "rent" ? "Аренда" : "Покупка";
+    meta.textContent = typeText + " • " + (book ? book.author : "нет автора");
+    var extra = document.createElement("div");
+    extra.className = "rent-meta";
+    extra.textContent = "Оформлено: " + formatDate(r.createdAt) + " • " + r.userName;
+    main.appendChild(title);
+    main.appendChild(meta);
+    main.appendChild(extra);
+    var status = document.createElement("div");
+    status.className = "rent-status";
+    var badge = document.createElement("span");
+    var now = new Date();
+    var label = "";
+    if (r.type === "rent" && r.endAt) {
+      var end = new Date(r.endAt);
+      var diffDays = daysBetween(now, end);
+      if (diffDays < 0) {
+        badge.className = "badge red";
+        badge.textContent = "Просрочено";
+        label = "Аренда завершена " + formatDate(r.endAt);
+      } else if (diffDays <= 2) {
+        badge.className = "badge blue";
+        badge.textContent = "Скоро окончание";
+        label = "Осталось " + diffDays + " дн.";
+      } else {
+        badge.className = "badge green";
+        badge.textContent = "Активная аренда";
+        label = "До " + formatDate(r.endAt);
+      }
+    } else if (r.type === "rent") {
+      badge.className = "badge gray";
+      badge.textContent = "Аренда";
+      label = "Без срока";
+    } else {
+      badge.className = "badge green";
+      badge.textContent = "Покупка";
+      label = "Сделка завершена";
+    }
+    var text = document.createElement("div");
+    text.className = "rent-meta";
+    text.textContent = label;
+    status.appendChild(badge);
+    status.appendChild(text);
+    row.appendChild(main);
+    row.appendChild(status);
+    list.appendChild(row);
+  });
+}
+function renderNotifications() {
+  var box = document.getElementById("notifications");
+  box.innerHTML = "";
+  var now = new Date();
+  var alerts = [];
+  rents.forEach(function (r) {
+    if (r.type !== "rent" || !r.endAt) return;
+    var end = new Date(r.endAt);
+    var diff = daysBetween(now, end);
+    if (diff < 0 || diff <= 2) {
+      var book = getBookById(r.bookId);
+      alerts.push({
+        rent: r,
+        book: book,
+        diff: diff
+      });
+    }
+  });
+  document.getElementById("alertCount").textContent = alerts.length + " напоминаний";
+  if (alerts.length === 0) {
+    var empty = document.createElement("div");
+    empty.className = "muted";
+    empty.textContent = "Активных напоминаний нет.";
+    box.appendChild(empty);
+    return;
+  }
+  alerts.sort(function (a, b) {
+    return a.diff - b.diff;
+  }).forEach(function (a) {
+    var note = document.createElement("div");
+    note.className = "note";
+    var name = a.rent.userName || "пользователь";
+    var bookTitle = a.book ? a.book.title : "книга";
+    var text;
+    if (a.diff < 0) {
+      text = "Срок аренды для \"" + bookTitle + "\" уже истёк. Напомнить " + name + " о возврате.";
+    } else if (a.diff === 0) {
+      text = "Сегодня заканчивается аренда \"" + bookTitle + "\". Отправьте напоминание " + name + ".";
+    } else {
+      text = "До окончания аренды \"" + bookTitle + "\" осталось " + a.diff + " дн. Рекомендуется предупредить " + name + ".";
+    }
+    note.textContent = text;
+    box.appendChild(note);
+  });
+}
+function fillFormForEdit(book) {
+  document.getElementById("titleInput").value = book.title;
+  document.getElementById("authorInput").value = book.author;
+  document.getElementById("categoryInput").value = book.category;
+  document.getElementById("yearInput").value = book.year;
+  document.getElementById("priceInput").value = book.price;
+  document.getElementById("statusInput").value = book.status;
+  document.getElementById("editBookId").value = book.id;
+  document.getElementById("saveBook").textContent = "Обновить книгу";
+}
+function resetForm() {
+  document.getElementById("bookForm").reset();
+  document.getElementById("statusInput").value = "available";
+  document.getElementById("editBookId").value = "";
+  document.getElementById("saveBook").textContent = "Сохранить книгу";
+}
+function updateAll() {
+  renderFilters();
+  renderBooksUser();
+  renderBooksAdmin();
+  renderRentsUser();
+  renderRentsAdmin();
+  renderNotifications();
+}
+userTab.onclick = function () {
+  userTab.classList.add("active");
+  adminTab.classList.remove("active");
+  userPanel.classList.remove("hidden");
+  adminPanel.classList.add("hidden");
+};
+adminTab.onclick = function () {
+  adminTab.classList.add("active");
+  userTab.classList.remove("active");
+  adminPanel.classList.remove("hidden");
+  userPanel.classList.add("hidden");
+};
+document.getElementById("clearFilters").onclick = function () {
+  document.getElementById("filterCategory").value = "";
+  document.getElementById("filterAuthor").value = "";
+  document.getElementById("filterYear").value = "";
+  renderBooksUser();
+};
+document.getElementById("filterCategory").onchange = renderBooksUser;
+document.getElementById("filterAuthor").onchange = renderBooksUser;
+document.getElementById("filterYear").onchange = renderBooksUser;
+document.getElementById("bookForm").onsubmit = function (e) {
+  e.preventDefault();
+  var title = document.getElementById("titleInput").value.trim();
+  var author = document.getElementById("authorInput").value.trim();
+  var category = document.getElementById("categoryInput").value.trim();
+  var year = parseInt(document.getElementById("yearInput").value, 10);
+  var price = parseInt(document.getElementById("priceInput").value, 10);
+  var status = document.getElementById("statusInput").value;
+  var editId = document.getElementById("editBookId").value;
+  if (!title || !author || !category || isNaN(year) || isNaN(price)) return;
+  if (editId) {
+    var id = parseInt(editId, 10);
+    var book = getBookById(id);
+    if (book) {
+      book.title = title;
+      book.author = author;
+      book.category = category;
+      book.year = year;
+      book.price = price;
+      book.status = status;
+    }
+  } else {
+    var newId = books.length ? Math.max.apply(null, books.map(function (b) {
+      return b.id;
+    })) + 1 : 1;
+    books.push({
+      id: newId,
+      title: title,
+      author: author,
+      category: category,
+      year: year,
+      price: price,
+      status: status
+    });
+  }
+  saveBooks();
+  resetForm();
+  updateAll();
+};
+document.getElementById("resetBookForm").onclick = function () {
+  resetForm();
+};
+loadState();
+updateAll();
+setInterval(function () {
+  renderRentsAdmin();
+  renderNotifications();
+  renderRentsUser();
+}, 60000);
+</script>
+
+
+</body></html>
