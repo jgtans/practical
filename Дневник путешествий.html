@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0115)https://storage.yandexcloud.net/x-solution-web-media/uploads/Works/2025-11-17/3ffcac4db86643d58fbc2fee082194ae.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Дневник путешествий</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #0b1220 0%, #111827 40%, #020617 100%);
+    color: #e5e7eb;
+    min-height: 100vh;
+}
+header {
+    width: 100%;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(90deg, rgba(15,23,42,0.95), rgba(30,64,175,0.7));
+    border-bottom: 1px solid rgba(148,163,184,0.4);
+}
+header h1 {
+    font-size: 28px;
+    letter-spacing: 0.03em;
+}
+header h1 span {
+    font-weight: 300;
+    font-size: 16px;
+    display: block;
+    color: #9ca3af;
+}
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.header-user-name {
+    font-weight: 500;
+}
+.header-badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(191,219,254,0.7);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #bfdbfe;
+}
+.header-time {
+    font-size: 12px;
+    color: #9ca3af;
+}
+main {
+    width: 100%;
+    padding: 24px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.section-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+.section-title span {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #9ca3af;
+}
+.section-subtitle {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 16px;
+}
+.panel-row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.panel {
+    flex: 1 1 320px;
+    background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(59,130,246,0.18), transparent 55%), rgba(15,23,42,0.96);
+    border-radius: 24px;
+    padding: 24px 24px 20px;
+    border: 1px solid rgba(148,163,184,0.5);
+    box-shadow: 0 24px 60px rgba(15,23,42,0.9);
+}
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.panel-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.panel-header-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.panel-header-subtitle {
+    font-size: 12px;
+    color: #9ca3af;
+}
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.chip {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,0.5);
+    background: rgba(15,23,42,0.85);
+}
+.chip.accent {
+    border-color: rgba(129,230,217,0.9);
+    background: radial-gradient(circle at top left, rgba(129,230,217,0.35), transparent 60%);
+}
+.chip.warn {
+    border-color: rgba(252,211,77,0.9);
+    background: radial-gradient(circle at top left, rgba(252,211,77,0.3), transparent 60%);
+}
+.chip.soft {
+    border-color: rgba(191,219,254,0.7);
+}
+.auth-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.auth-tab {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(148,163,184,0.6);
+    background: transparent;
+    color: #e5e7eb;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+.auth-tab.active {
+    background: linear-gradient(135deg, rgba(129,230,217,0.1), rgba(56,189,248,0.08));
+    border-color: rgba(129,230,217,0.9);
+}
+.auth-tab:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(15,23,42,0.8);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-row-2 {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.form-row-3 {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+label {
+    font-size: 12px;
+    color: #9ca3af;
+}
+input, select, textarea {
+    padding: 9px 11px;
+    border-radius: 14px;
+    border: 1px solid rgba(148,163,184,0.6);
+    background: rgba(15,23,42,0.95);
+    color: #e5e7eb;
+    font-size: 13px;
+    outline: none;
+    transition: 0.15s ease;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: rgba(129,230,217,0.9);
+    box-shadow: 0 0 0 1px rgba(129,230,217,0.5);
+}
+textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+.btn {
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.15s ease;
+}
+.btn-primary {
+    background: linear-gradient(135deg, #22c55e, #22d3ee);
+    color: #022c22;
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 40px rgba(34,197,94,0.3);
+}
+.btn-ghost {
+    background: transparent;
+    border: 1px solid rgba(148,163,184,0.7);
+    color: #e5e7eb;
+}
+.btn-ghost:hover {
+    background: rgba(15,23,42,0.9);
+}
+.btn-icon {
+    border-radius: 999px;
+    padding: 8px 10px;
+    font-size: 12px;
+}
+.badge-status {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(129,230,217,0.9);
+    color: #a5f3fc;
+    background: rgba(15,23,42,0.9);
+}
+.helper-text {
+    font-size: 11px;
+    color: #9ca3af;
+}
+.helper-text strong {
+    color: #e5e7eb;
+}
+.geolocation-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+}
+.geolocation-output {
+    font-size: 11px;
+    color: #a5f3fc;
+}
+.image-preview {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.image-preview img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid rgba(148,163,184,0.7);
+}
+.image-preview span {
+    font-size: 11px;
+    color: #9ca3af;
+}
+.rating-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.rating-chip {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.rating-chip input[type="range"] {
+    padding: 0;
+    background: transparent;
+    border-radius: 999px;
+}
+.rating-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #9ca3af;
+}
+.trip-filters {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+.trip-filters-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.trip-filters-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.trip-count {
+    font-size: 12px;
+    color: #9ca3af;
+}
+.trip-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+.trip-card {
+    position: relative;
+    background: radial-gradient(circle at top left, rgba(59,130,246,0.22), transparent 60%), rgba(15,23,42,0.96);
+    border-radius: 20px;
+    padding: 14px 14px 13px;
+    border: 1px solid rgba(148,163,184,0.6);
+    box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.trip-card-header {
+    display: flex;
+    gap: 10px;
+}
+.trip-card-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: radial-gradient(circle at center, rgba(15,23,42,1), rgba(30,64,175,0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #9ca3af;
+    border: 1px solid rgba(148,163,184,0.7);
+}
+.trip-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.trip-card-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.trip-card-title-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    align-items: flex-start;
+}
+.trip-card-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+.trip-card-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(129,230,217,0.9);
+    color: #a5f3fc;
+}
+.trip-card-meta {
+    font-size: 11px;
+    color: #9ca3af;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+}
+.trip-card-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.trip-card-meta strong {
+    color: #e5e7eb;
+}
+.trip-card-body {
+    font-size: 12px;
+    color: #d1d5db;
+}
+.trip-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+.trip-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(15,23,42,0.9);
+    border: 1px solid rgba(148,163,184,0.7);
+}
+.trip-tag.primary {
+    border-color: rgba(129,230,217,0.9);
+}
+.trip-ratings-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+.trip-rating-pill {
+    font-size: 11px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: rgba(15,23,42,0.95);
+    border: 1px solid rgba(148,163,184,0.7);
+}
+.trip-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+}
+.trip-footer-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.trip-author {
+    font-size: 11px;
+    color: #9ca3af;
+}
+.trip-date {
+    font-size: 11px;
+    color: #9ca3af;
+}
+.trip-cost {
+    font-size: 12px;
+    font-weight: 500;
+    color: #bbf7d0;
+}
+.empty-state {
+    width: 100%;
+    padding: 22px 18px;
+    border-radius: 18px;
+    border: 1px dashed rgba(148,163,184,0.7);
+    background: rgba(15,23,42,0.9);
+    font-size: 13px;
+    color: #9ca3af;
+}
+.empty-state strong {
+    color: #e5e7eb;
+}
+@media (max-width: 768px) {
+    header, main {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .panel {
+        padding: 20px 16px 18px;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <div>
+        <h1>Дневник путешествий <span>учебный проект веб-приложения</span></h1>
+    </div>
+    <div class="header-user">
+        <div class="header-user-info">
+            <div class="header-user-name" id="headerUserName">Гость</div>
+            <div class="header-time">Режим локального хранения данных в браузере</div>
+        </div>
+        <div class="header-badge">Travel Diary</div>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="section-title">
+            <span></span> Пользователь и авторизация
+        </div>
+        <p class="section-subtitle">Создание пользователя системы, вход в личный кабинет и базовая защита доступа к записям дневника.</p>
+        <div class="panel-row">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-header-left">
+                        <div class="panel-header-title">Регистрация и вход</div>
+                        <div class="panel-header-subtitle">Каждый пользователь видит свои записи и путешествия других пользователей.</div>
+                    </div>
+                    <span class="badge-status" id="authStatus" style="border-color: rgba(248, 113, 113, 0.9); color: rgb(254, 202, 202);">Не авторизован</span>
+                </div>
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab active" id="tabRegister">Регистрация</button>
+                    <button type="button" class="auth-tab" id="tabLogin">Вход</button>
+                </div>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regName">Имя пользователя</label>
+                        <input id="regName" type="text" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">E-mail</label>
+                        <input id="regEmail" type="email" required="">
+                    </div>
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="regPassword">Пароль</label>
+                            <input id="regPassword" type="password" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword2">Повтор пароля</label>
+                            <input id="regPassword2" type="password" required="">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Создать пользователя</button>
+                    <div class="helper-text">После регистрации будет создан локальный пользователь и выполнен автоматический вход.</div>
+                </form>
+                <form id="loginForm" style="display:none;">
+                    <div class="form-group">
+                        <label for="loginEmail">E-mail</label>
+                        <input id="loginEmail" type="email" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <input id="loginPassword" type="password" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                    <div class="helper-text">Авторизация происходит на основе данных, сохранённых в localStorage браузера.</div>
+                </form>
+                <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                    <button type="button" class="btn btn-ghost btn-icon" id="logoutBtn">Выйти</button>
+                    <div class="helper-text">
+                        <strong>Важно:</strong> данные не передаются на сервер и доступны только на этом устройстве.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="section-title">
+            <span></span> Запись путешествия
+        </div>
+        <p class="section-subtitle">Добавление новой записи с местоположением, изображением, стоимостью и экспертной оценкой путешествия.</p>
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-header-left">
+                    <div class="panel-header-title">Новая запись в дневнике путешествий</div>
+                    <div class="panel-header-subtitle">Заполните ключевые параметры поездки и сохраните их.</div>
+                </div>
+                <div class="chip-row">
+                    <div class="chip accent">Местоположение</div>
+                    <div class="chip accent">Изображение</div>
+                    <div class="chip accent">Стоимость</div>
+                    <div class="chip">Культурное наследие</div>
+                    <div class="chip">Места для посещения</div>
+                    <div class="chip">Оценка условий</div>
+                </div>
+            </div>
+            <form id="tripForm">
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="tripTitle">Название путешествия</label>
+                        <input id="tripTitle" type="text" placeholder="Например, Уикенд в Санкт-Петербурге" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripDate">Дата поездки</label>
+                        <input id="tripDate" type="date" required="">
+                    </div>
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label for="tripCountry">Страна</label>
+                        <input id="tripCountry" type="text" placeholder="Россия, Турция, Италия..." required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripCity">Город / регион</label>
+                        <input id="tripCity" type="text" placeholder="Санкт-Петербург, Анталья, Рим..." required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripCost">Стоимость поездки (₽)</label>
+                        <input id="tripCost" type="number" min="0" step="1000" placeholder="Пример: 45000">
+                    </div>
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label for="tripLat">Широта</label>
+                        <input id="tripLat" type="text" placeholder="Автозаполнение по геолокации">
+                    </div>
+                    <div class="form-group">
+                        <label for="tripLon">Долгота</label>
+                        <input id="tripLon" type="text" placeholder="Автозаполнение по геолокации">
+                    </div>
+                    <div class="form-group">
+                        <label>Геопозиция</label>
+                        <div class="geolocation-row">
+                            <button type="button" class="btn btn-ghost btn-icon" id="geoBtn">Определить автоматически</button>
+                        </div>
+                        <div class="geolocation-output" id="geoOutput"></div>
+                    </div>
+                </div>
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="tripHeritage">Места культурного наследия</label>
+                        <textarea id="tripHeritage" placeholder="Исторические места, музеи, памятники архитектуры..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tripPlaces">Места для посещения</label>
+                        <textarea id="tripPlaces" placeholder="Рекомендованные парки, кафе, набережные, смотровые площадки..."></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tripNotes">Краткое описание поездки</label>
+                    <textarea id="tripNotes" placeholder="Общее впечатление, погода, особенности маршрута, транспорт и т.д."></textarea>
+                </div>
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="tripImage">Изображение места</label>
+                        <input id="tripImage" type="file" accept="image/*">
+                        <div class="image-preview" id="imagePreview">
+                            <span>Изображение не выбрано</span>
+                        </div>
+                        <div class="helper-text">Файл не отправляется на сервер и сохраняется локально вместе с записью.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Оценка условий поездки</label>
+                        <div class="rating-row">
+                            <div class="rating-chip">
+                                <span class="helper-text"><strong>Удобство передвижения</strong></span>
+                                <input id="ratingComfort" type="range" min="1" max="5" value="4">
+                                <div class="rating-values">
+                                    <span>1</span>
+                                    <span id="ratingComfortValue">4</span>
+                                    <span>5</span>
+                                </div>
+                            </div>
+                            <div class="rating-chip">
+                                <span class="helper-text"><strong>Безопасность</strong></span>
+                                <input id="ratingSafety" type="range" min="1" max="5" value="4">
+                                <div class="rating-values">
+                                    <span>1</span>
+                                    <span id="ratingSafetyValue">4</span>
+                                    <span>5</span>
+                                </div>
+                            </div>
+                            <div class="rating-chip">
+                                <span class="helper-text"><strong>Населённость</strong></span>
+                                <input id="ratingCrowd" type="range" min="1" max="5" value="3">
+                                <div class="rating-values">
+                                    <span>1</span>
+                                    <span id="ratingCrowdValue">3</span>
+                                    <span>5</span>
+                                </div>
+                            </div>
+                            <div class="rating-chip">
+                                <span class="helper-text"><strong>Растительность</strong></span>
+                                <input id="ratingGreen" type="range" min="1" max="5" value="4">
+                                <div class="rating-values">
+                                    <span>1</span>
+                                    <span id="ratingGreenValue">4</span>
+                                    <span>5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить путешествие</button>
+            </form>
+        </div>
+    </section>
+    <section>
+        <div class="section-title">
+            <span></span> Просмотр путешествий пользователей
+        </div>
+        <p class="section-subtitle">Лента путешествий с фильтрами по авторам и типу записей: свои, чужие и общая подборка.</p>
+        <div class="panel">
+            <div class="panel-header">
+                <div class="panel-header-left">
+                    <div class="panel-header-title">Лента путешествий</div>
+                    <div class="panel-header-subtitle">Просматривайте свои поездки и вдохновляйтесь маршрутами других пользователей.</div>
+                </div>
+                <div class="chip-row">
+                    <div class="chip warn">Мои записи</div>
+                    <div class="chip">Другие пользователи</div>
+                    <div class="chip">Все путешествия</div>
+                </div>
+            </div>
+            <div class="trip-filters">
+                <div class="trip-filters-left">
+                    <select id="filterOwner">
+                        <option value="all">Все путешествия</option>
+                        <option value="mine">Только мои</option>
+                        <option value="others">Только других пользователей</option>
+                    </select>
+                    <select id="filterSort">
+                        <option value="newest">Сначала новые</option>
+                        <option value="oldest">Сначала старые</option>
+                        <option value="costAsc">По стоимости: по возрастанию</option>
+                        <option value="costDesc">По стоимости: по убыванию</option>
+                    </select>
+                </div>
+                <div class="trip-filters-right">
+                    <input id="filterSearch" type="text" placeholder="Поиск по названию, городу или стране">
+                    <div class="trip-count" id="tripCount">Записей: 0</div>
+                </div>
+            </div>
+            <div id="tripList" class="trip-list"></div>
+            <div id="tripEmpty" class="empty-state" style="display: block;">
+                <strong>Записей пока нет.</strong> Создайте первое путешествие через форму выше, после чего оно появится в общей ленте.
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+var usersKey = "travelDiaryUsers";
+var tripsKey = "travelDiaryTrips";
+var currentUserKey = "travelDiaryCurrentUser";
+var currentImageDataUrl = null;
+var headerUserName = document.getElementById("headerUserName");
+var authStatus = document.getElementById("authStatus");
+var logoutBtn = document.getElementById("logoutBtn");
+var tabRegister = document.getElementById("tabRegister");
+var tabLogin = document.getElementById("tabLogin");
+var registerForm = document.getElementById("registerForm");
+var loginForm = document.getElementById("loginForm");
+var tripForm = document.getElementById("tripForm");
+var geoBtn = document.getElementById("geoBtn");
+var geoOutput = document.getElementById("geoOutput");
+var imageInput = document.getElementById("tripImage");
+var imagePreview = document.getElementById("imagePreview");
+var ratingComfort = document.getElementById("ratingComfort");
+var ratingSafety = document.getElementById("ratingSafety");
+var ratingCrowd = document.getElementById("ratingCrowd");
+var ratingGreen = document.getElementById("ratingGreen");
+var ratingComfortValue = document.getElementById("ratingComfortValue");
+var ratingSafetyValue = document.getElementById("ratingSafetyValue");
+var ratingCrowdValue = document.getElementById("ratingCrowdValue");
+var ratingGreenValue = document.getElementById("ratingGreenValue");
+var filterOwner = document.getElementById("filterOwner");
+var filterSort = document.getElementById("filterSort");
+var filterSearch = document.getElementById("filterSearch");
+var tripList = document.getElementById("tripList");
+var tripEmpty = document.getElementById("tripEmpty");
+var tripCount = document.getElementById("tripCount");
+function getUsers() {
+    var raw = localStorage.getItem(usersKey);
+    if (!raw) return [];
+    try {
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+        return [];
+    } catch (e) {
+        return [];
+    }
+}
+function saveUsers(users) {
+    localStorage.setItem(usersKey, JSON.stringify(users));
+}
+function getTrips() {
+    var raw = localStorage.getItem(tripsKey);
+    if (!raw) return [];
+    try {
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+        return [];
+    } catch (e) {
+        return [];
+    }
+}
+function saveTrips(trips) {
+    localStorage.setItem(tripsKey, JSON.stringify(trips));
+}
+function getCurrentUser() {
+    var raw = localStorage.getItem(currentUserKey);
+    if (!raw) return null;
+    try {
+        return JSON.parse(raw);
+    } catch (e) {
+        return null;
+    }
+}
+function setCurrentUser(user) {
+    if (!user) {
+        localStorage.removeItem(currentUserKey);
+    } else {
+        localStorage.setItem(currentUserKey, JSON.stringify(user));
+    }
+    updateAuthUI();
+    renderTrips();
+}
+function updateAuthUI() {
+    var user = getCurrentUser();
+    if (user) {
+        headerUserName.textContent = user.name || "Пользователь";
+        authStatus.textContent = "Авторизован";
+        authStatus.style.borderColor = "rgba(129,230,217,0.9)";
+        authStatus.style.color = "#a5f3fc";
+    } else {
+        headerUserName.textContent = "Гость";
+        authStatus.textContent = "Не авторизован";
+        authStatus.style.borderColor = "rgba(248,113,113,0.9)";
+        authStatus.style.color = "#fecaca";
+    }
+}
+function switchAuthTab(mode) {
+    if (mode === "register") {
+        tabRegister.classList.add("active");
+        tabLogin.classList.remove("active");
+        registerForm.style.display = "flex";
+        loginForm.style.display = "none";
+    } else {
+        tabLogin.classList.add("active");
+        tabRegister.classList.remove("active");
+        loginForm.style.display = "flex";
+        registerForm.style.display = "none";
+    }
+}
+tabRegister.addEventListener("click", function () {
+    switchAuthTab("register");
+});
+tabLogin.addEventListener("click", function () {
+    switchAuthTab("login");
+});
+registerForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("regName").value.trim();
+    var email = document.getElementById("regEmail").value.trim().toLowerCase();
+    var password = document.getElementById("regPassword").value;
+    var password2 = document.getElementById("regPassword2").value;
+    if (!name || !email || !password || !password2) {
+        alert("Заполните все поля регистрации.");
+        return;
+    }
+    if (password !== password2) {
+        alert("Пароли не совпадают.");
+        return;
+    }
+    var users = getUsers();
+    var exists = users.some(function (u) {
+        return u.email === email;
+    });
+    if (exists) {
+        alert("Пользователь с таким e-mail уже существует.");
+        return;
+    }
+    var newUser = {
+        id: Date.now().toString(),
+        name: name,
+        email: email,
+        password: password
+    };
+    users.push(newUser);
+    saveUsers(users);
+    setCurrentUser({ id: newUser.id, name: newUser.name, email: newUser.email });
+    registerForm.reset();
+    alert("Пользователь создан и авторизован.");
+});
+loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("loginEmail").value.trim().toLowerCase();
+    var password = document.getElementById("loginPassword").value;
+    var users = getUsers();
+    var found = users.find(function (u) {
+        return u.email === email && u.password === password;
+    });
+    if (!found) {
+        alert("Неверный e-mail или пароль.");
+        return;
+    }
+    setCurrentUser({ id: found.id, name: found.name, email: found.email });
+    loginForm.reset();
+    alert("Вы успешно вошли в систему.");
+});
+logoutBtn.addEventListener("click", function () {
+    var user = getCurrentUser();
+    if (!user) {
+        alert("Вы уже не авторизованы.");
+        return;
+    }
+    setCurrentUser(null);
+    alert("Вы вышли из системы. Для добавления записей необходимо снова войти.");
+});
+geoBtn.addEventListener("click", function () {
+    if (!navigator.geolocation) {
+        geoOutput.textContent = "Геолокация не поддерживается браузером.";
+        return;
+    }
+    geoOutput.textContent = "Определение координат...";
+    navigator.geolocation.getCurrentPosition(function (pos) {
+        var lat = pos.coords.latitude.toFixed(6);
+        var lon = pos.coords.longitude.toFixed(6);
+        document.getElementById("tripLat").value = lat;
+        document.getElementById("tripLon").value = lon;
+        geoOutput.textContent = "Широта: " + lat + ", Долгота: " + lon;
+    }, function () {
+        geoOutput.textContent = "Не удалось получить геопозицию. Введите координаты вручную.";
+    });
+});
+imageInput.addEventListener("change", function () {
+    var file = imageInput.files[0];
+    if (!file) {
+        imagePreview.innerHTML = "<span>Изображение не выбрано</span>";
+        currentImageDataUrl = null;
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        currentImageDataUrl = e.target.result;
+        imagePreview.innerHTML = "";
+        var img = document.createElement("img");
+        img.src = currentImageDataUrl;
+        var text = document.createElement("span");
+        text.textContent = file.name;
+        imagePreview.appendChild(img);
+        imagePreview.appendChild(text);
+    };
+    reader.readAsDataURL(file);
+});
+function attachRatingSync(rangeInput, label) {
+    rangeInput.addEventListener("input", function () {
+        label.textContent = rangeInput.value;
+    });
+}
+attachRatingSync(ratingComfort, ratingComfortValue);
+attachRatingSync(ratingSafety, ratingSafetyValue);
+attachRatingSync(ratingCrowd, ratingCrowdValue);
+attachRatingSync(ratingGreen, ratingGreenValue);
+tripForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var user = getCurrentUser();
+    if (!user) {
+        alert("Чтобы добавлять путешествия, необходимо войти или зарегистрироваться.");
+        return;
+    }
+    var title = document.getElementById("tripTitle").value.trim();
+    var date = document.getElementById("tripDate").value;
+    var country = document.getElementById("tripCountry").value.trim();
+    var city = document.getElementById("tripCity").value.trim();
+    var costRaw = document.getElementById("tripCost").value;
+    var lat = document.getElementById("tripLat").value.trim();
+    var lon = document.getElementById("tripLon").value.trim();
+    var heritage = document.getElementById("tripHeritage").value.trim();
+    var places = document.getElementById("tripPlaces").value.trim();
+    var notes = document.getElementById("tripNotes").value.trim();
+    if (!title || !date || !country || !city) {
+        alert("Заполните, как минимум, название, дату, страну и город.");
+        return;
+    }
+    var cost = costRaw ? parseInt(costRaw, 10) : null;
+    var trip = {
+        id: Date.now().toString(),
+        userId: user.id,
+        userName: user.name,
+        title: title,
+        date: date,
+        country: country,
+        city: city,
+        cost: cost,
+        lat: lat,
+        lon: lon,
+        heritage: heritage,
+        places: places,
+        notes: notes,
+        ratingComfort: parseInt(ratingComfort.value, 10),
+        ratingSafety: parseInt(ratingSafety.value, 10),
+        ratingCrowd: parseInt(ratingCrowd.value, 10),
+        ratingGreen: parseInt(ratingGreen.value, 10),
+        imageDataUrl: currentImageDataUrl
+    };
+    var trips = getTrips();
+    trips.push(trip);
+    saveTrips(trips);
+    tripForm.reset();
+    currentImageDataUrl = null;
+    imagePreview.innerHTML = "<span>Изображение не выбрано</span>";
+    ratingComfort.value = 4;
+    ratingSafety.value = 4;
+    ratingCrowd.value = 3;
+    ratingGreen.value = 4;
+    ratingComfortValue.textContent = "4";
+    ratingSafetyValue.textContent = "4";
+    ratingCrowdValue.textContent = "3";
+    ratingGreenValue.textContent = "4";
+    renderTrips();
+    alert("Путешествие сохранено.");
+});
+filterOwner.addEventListener("change", renderTrips);
+filterSort.addEventListener("change", renderTrips);
+filterSearch.addEventListener("input", function () {
+    renderTrips();
+});
+function renderTrips() {
+    var trips = getTrips();
+    var user = getCurrentUser();
+    var ownerFilter = filterOwner.value;
+    var sortMode = filterSort.value;
+    var search = filterSearch.value.trim().toLowerCase();
+    var filtered = trips.filter(function (t) {
+        if (ownerFilter === "mine") {
+            if (!user) return false;
+            if (t.userId !== user.id) return false;
+        }
+        if (ownerFilter === "others") {
+            if (!user) return true;
+            if (t.userId === user.id) return false;
+        }
+        if (search) {
+            var text = (t.title + " " + t.country + " " + t.city).toLowerCase();
+            if (text.indexOf(search) === -1) return false;
+        }
+        return true;
+    });
+    filtered.sort(function (a, b) {
+        if (sortMode === "newest") {
+            return b.id.localeCompare(a.id);
+        }
+        if (sortMode === "oldest") {
+            return a.id.localeCompare(b.id);
+        }
+        if (sortMode === "costAsc") {
+            var ca = a.cost || 0;
+            var cb = b.cost || 0;
+            return ca - cb;
+        }
+        if (sortMode === "costDesc") {
+            var cda = a.cost || 0;
+            var cdb = b.cost || 0;
+            return cdb - cda;
+        }
+        return 0;
+    });
+    tripCount.textContent = "Записей: " + filtered.length;
+    tripList.innerHTML = "";
+    if (filtered.length === 0) {
+        tripEmpty.style.display = "block";
+        return;
+    } else {
+        tripEmpty.style.display = "none";
+    }
+    filtered.forEach(function (t) {
+        var card = document.createElement("div");
+        card.className = "trip-card";
+        var header = document.createElement("div");
+        header.className = "trip-card-header";
+        var imageBox = document.createElement("div");
+        imageBox.className = "trip-card-image";
+        if (t.imageDataUrl) {
+            var img = document.createElement("img");
+            img.src = t.imageDataUrl;
+            imageBox.appendChild(img);
+        } else {
+            imageBox.textContent = "Фото не добавлено";
+        }
+        var main = document.createElement("div");
+        main.className = "trip-card-main";
+        var titleRow = document.createElement("div");
+        titleRow.className = "trip-card-title-row";
+        var titleEl = document.createElement("div");
+        titleEl.className = "trip-card-title";
+        titleEl.textContent = t.title;
+        var badge = document.createElement("div");
+        badge.className = "trip-card-badge";
+        var current = getCurrentUser();
+        var isMine = current && current.id === t.userId;
+        badge.textContent = isMine ? "Моё путешествие" : "Путешествие пользователя";
+        titleRow.appendChild(titleEl);
+        titleRow.appendChild(badge);
+        var meta = document.createElement("div");
+        meta.className = "trip-card-meta";
+        var spanLocation = document.createElement("span");
+        spanLocation.innerHTML = " <strong>" + t.city + "</strong>, " + t.country;
+        var spanDate = document.createElement("span");
+        spanDate.innerHTML = "🗓 " + t.date;
+        var spanCoords = document.createElement("span");
+        if (t.lat && t.lon) {
+            spanCoords.innerHTML = "" + t.lat + " / " + t.lon;
+        } else {
+            spanCoords.innerHTML = " координаты не указаны";
+        }
+        meta.appendChild(spanLocation);
+        meta.appendChild(spanDate);
+        meta.appendChild(spanCoords);
+        var body = document.createElement("div");
+        body.className = "trip-card-body";
+        body.textContent = t.notes || "Описание поездки не указано.";
+        var tags = document.createElement("div");
+        tags.className = "trip-card-tags";
+        if (t.heritage) {
+            var tagHer = document.createElement("span");
+            tagHer.className = "trip-tag primary";
+            tagHer.textContent = "Культурное наследие";
+            tags.appendChild(tagHer);
+        }
+        if (t.places) {
+            var tagPlaces = document.createElement("span");
+            tagPlaces.className = "trip-tag";
+            tagPlaces.textContent = "Места для посещения";
+            tags.appendChild(tagPlaces);
+        }
+        if (t.cost) {
+            var tagBudget = document.createElement("span");
+            tagBudget.className = "trip-tag";
+            tagBudget.textContent = "Бюджетная оценка";
+            tags.appendChild(tagBudget);
+        }
+        var ratingsRow = document.createElement("div");
+        ratingsRow.className = "trip-ratings-row";
+        var r1 = document.createElement("span");
+        r1.className = "trip-rating-pill";
+        r1.textContent = "Удобство: " + t.ratingComfort + "/5";
+        var r2 = document.createElement("span");
+        r2.className = "trip-rating-pill";
+        r2.textContent = "Безопасность: " + t.ratingSafety + "/5";
+        var r3 = document.createElement("span");
+        r3.className = "trip-rating-pill";
+        r3.textContent = "Населённость: " + t.ratingCrowd + "/5";
+        var r4 = document.createElement("span");
+        r4.className = "trip-rating-pill";
+        r4.textContent = "Растительность: " + t.ratingGreen + "/5";
+        ratingsRow.appendChild(r1);
+        ratingsRow.appendChild(r2);
+        ratingsRow.appendChild(r3);
+        ratingsRow.appendChild(r4);
+        main.appendChild(titleRow);
+        main.appendChild(meta);
+        main.appendChild(body);
+        main.appendChild(tags);
+        main.appendChild(ratingsRow);
+        header.appendChild(imageBox);
+        header.appendChild(main);
+        var footer = document.createElement("div");
+        footer.className = "trip-footer";
+        var footerLeft = document.createElement("div");
+        footerLeft.className = "trip-footer-left";
+        var author = document.createElement("div");
+        author.className = "trip-author";
+        author.textContent = "Автор: " + t.userName;
+        var dateCreate = document.createElement("div");
+        dateCreate.className = "trip-date";
+        dateCreate.textContent = "ID записи: " + t.id;
+        footerLeft.appendChild(author);
+        footerLeft.appendChild(dateCreate);
+        var costEl = document.createElement("div");
+        costEl.className = "trip-cost";
+        costEl.textContent = t.cost ? t.cost.toLocaleString("ru-RU") + " ₽" : "Стоимость не указана";
+        footer.appendChild(footerLeft);
+        footer.appendChild(costEl);
+        card.appendChild(header);
+        card.appendChild(footer);
+        tripList.appendChild(card);
+    });
+}
+document.addEventListener("DOMContentLoaded", function () {
+    updateAuthUI();
+    renderTrips();
+});
+</script>
+
+
+</body></html>
